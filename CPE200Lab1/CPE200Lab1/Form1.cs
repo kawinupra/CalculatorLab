@@ -59,6 +59,7 @@ namespace CPE200Lab1
         }
         private void btnPlus_Click(object sender, EventArgs e)
         {
+            Operator = 1;
             if (statnum1 == 0)
             {
 
@@ -71,7 +72,7 @@ namespace CPE200Lab1
                 num1 = num1 + float.Parse(lblDisplay.Text);
                 lblDisplay.Text = lblDisplay.Text;
             }
-            if (Operator == 4 || Operator == 2 || Operator == 3) lblDisplay.Text = "Can't calculate.";
+            
             Operator = 1;
             OpertorPressed = 1;
 
@@ -121,6 +122,7 @@ namespace CPE200Lab1
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
+            Operator = 2;
             if (statnum2 == 0)
             {
 
@@ -133,13 +135,17 @@ namespace CPE200Lab1
                 num1 = num1 - float.Parse(lblDisplay.Text);
                 lblDisplay.Text = lblDisplay.Text;
             }
-            if (Operator == 1 || Operator == 4 || Operator == 3) lblDisplay.Text = "Can't calculate.";
-            Operator = 2;
+            
+           
+            
             OpertorPressed = 1;
+            
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
+           
+            Operator = 3;
             if (statnum3 == 0)
             {
 
@@ -152,13 +158,13 @@ namespace CPE200Lab1
                 num1 = num1 * float.Parse(lblDisplay.Text);
                 lblDisplay.Text = lblDisplay.Text;
             }
-            if (Operator == 1 || Operator == 2 || Operator == 4) lblDisplay.Text = "Can't calculate.";
-            Operator = 3;
+          
             OpertorPressed = 1;
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
+            Operator = 4;
             if (statnum4 == 0)
             {
 
@@ -171,8 +177,8 @@ namespace CPE200Lab1
                 num1 = num1 * float.Parse(lblDisplay.Text);
                 lblDisplay.Text = lblDisplay.Text;
             }
-            if (Operator == 1 || Operator == 2 || Operator == 3) lblDisplay.Text = "Can't calculate.";
-            Operator = 4;
+            
+            
             OpertorPressed = 1;
         }
 
