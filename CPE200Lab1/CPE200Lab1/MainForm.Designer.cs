@@ -338,6 +338,7 @@
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.Yellow;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.button3.Location = new System.Drawing.Point(13, 144);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(88, 73);
@@ -349,6 +350,7 @@
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.Yellow;
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.button4.Location = new System.Drawing.Point(389, 146);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(85, 71);
@@ -360,6 +362,7 @@
             // button5
             // 
             this.button5.BackColor = System.Drawing.Color.Yellow;
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.button5.Location = new System.Drawing.Point(295, 146);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(87, 73);
@@ -371,6 +374,7 @@
             // button6
             // 
             this.button6.BackColor = System.Drawing.Color.Yellow;
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.button6.Location = new System.Drawing.Point(106, 146);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(87, 71);
@@ -382,6 +386,7 @@
             // button7
             // 
             this.button7.BackColor = System.Drawing.Color.Yellow;
+            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.button7.Location = new System.Drawing.Point(202, 146);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(87, 73);
