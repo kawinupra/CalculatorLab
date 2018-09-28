@@ -8,62 +8,65 @@ namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
     {
-        public string Process(string str)
+        /// <summary>
+        /// Calculating using RPN calculator 
+        /// </summary>
+        /// <param name="str"> The string of RPN style calculation </param>
+        /// <returns> Resulf of string </returns>
+        public new string Process(string str)
         {
-            Stack<string> st = new Stack<string>();
-            string[] part = str.Split(' ');
-            String sum, n1, n2;
+            string one, two, sum;
+            Stack<string> myStack = new Stack<string>();
+            string[] parts = str.Split(' ');
 
-            for (int i = 0; i < part.Length; i++)
+            List<string> partsWithoutSpace = parts.ToList<string>();
+            partsWithoutSpace.RemoveAll(p => string.IsNullOrEmpty(p));
+            parts = partsWithoutSpace.ToArray();
+
+            for (int i = 0; i < parts.Length; i++)
             {
-                if (isNumber(part[i]))
+                if (isNumber(parts[i]))
                 {
-                    st.Push(part[i]);
+                    myStack.Push(parts[i]);
                 }
-
-                if (isOperator(part[i]))
+                else if (isOperator(parts[i]))
                 {
-                    if (st.Count >= 2)
+                    if ((parts[i] == "+" || parts[i] == "-" || parts[i] == "X" || parts[i] == "÷") && myStack.Count >= 2)
                     {
-                        n2 = st.Pop();
-                        n1 = st.Pop();
-                        sum = calculate(part[i], n1, n2);
-                        st.Push(sum);
+                        two = myStack.Pop();
+                        one = myStack.Pop();
+                        sum = calculate(parts[i], one, two);
+                        myStack.Push(sum);
+                    }
+                    else if (parts[i] == "√" || parts[i] == "1/x" && myStack.Count == 1)
+                    {
+                        one = myStack.Pop();
+                        myStack.Push(unaryCalculate(parts[i], one));
+                    }
+                    else if (parts[i] == "%")
+                    {
+                        two = myStack.Pop();
+                        one = myStack.Pop();
+                        myStack.Push(one);
+                        myStack.Push(calculate(parts[i], one, two));
 
                     }
-                    else
-                    {
-                        if (part[i] == "√")
-                        {
-                            n1 = st.Pop();
-                            sum = unaryCalculate(part[i], n1);
-                            st.Push(sum);
-                        }
-                        else if (part[i] == "1/x")
-                        {
-                            n1 = st.Pop();
-                            sum = unaryCalculate(part[i], n1);
-                            st.Push(sum);
-                        }
-                        else
-                        {
-                            return "E";
-                        }
-
-                    }
-
+                    else return "E";
                 }
-
-
+                else
+                {
+                    return "E";
+                }
             }
-            if (st.Count == 1)
+            if (myStack.Count == 1)
             {
-                return st.Peek();
+                return myStack.Pop();
             }
             else
             {
                 return "E";
             }
+
         }
     }
 }

@@ -11,38 +11,33 @@ using System.Windows.Forms;
 namespace CPE200Lab1
 {
     public partial class ExtendForm : Form
-
     {
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
-        private CalculatorEngine engine;
-        private RPNCalculatorEngine rpnengine;
+        private RPNCalculatorEngine RPN;
 
         public ExtendForm()
         {
             InitializeComponent();
-            engine = new CalculatorEngine();
-            rpnengine = new RPNCalculatorEngine();
+            RPN = new RPNCalculatorEngine();
         }
 
-        private bool isOperator(string ch)
+        private bool isOperator(char ch)
         {
             switch (ch)
             {
-                case "+":
-                case "-":
-                case "X":
-                case "÷":
-                case "√":
-                case "1/x":
-                case "%":
+                case '+':
+                case '-':
+                case 'X':
+                case '÷':
+                case '%':
+                case '1':
+                case '√':
                     return true;
             }
             return false;
         }
-
-
 
         private void btnNumber_Click(object sender, EventArgs e)
         {
@@ -72,7 +67,7 @@ namespace CPE200Lab1
             isNumberPart = false;
             isContainDot = false;
             string current = lblDisplay.Text;
-            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2].ToString()))
+            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
             {
                 lblDisplay.Text += " " + ((Button)sender).Text + " ";
                 isSpaceAllowed = false;
@@ -87,7 +82,7 @@ namespace CPE200Lab1
             }
             // check if the last one is operator
             string current = lblDisplay.Text;
-            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2].ToString()))
+            if (current[current.Length - 1] is ' ' && current.Length > 2 && isOperator(current[current.Length - 2]))
             {
                 lblDisplay.Text = current.Substring(0, current.Length - 3);
             }
@@ -111,23 +106,18 @@ namespace CPE200Lab1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            string result = engine.Process(lblDisplay.Text);
+            string result = RPN.Process(lblDisplay.Text);
             if (result is "E")
             {
-                result = rpnengine.Process(lblDisplay.Text);
-                if (result is "E")
-                {
-                    lblDisplay.Text = "ERROR";
-                }
-                else
-                {
-                    lblDisplay.Text = result;
-                }
+                result = RPN.Process(lblDisplay.Text);
+                if (result is "E") lblDisplay.Text = "Error";
+                else lblDisplay.Text = result;
             }
             else
             {
                 lblDisplay.Text = result;
             }
+            isSpaceAllowed = true;
         }
 
         private void btnSign_Click(object sender, EventArgs e)
@@ -186,5 +176,6 @@ namespace CPE200Lab1
                 isSpaceAllowed = false;
             }
         }
+
     }
 }
